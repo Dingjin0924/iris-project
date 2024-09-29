@@ -1,7 +1,7 @@
-# 數據向量化
+# 矩陣數據計算模組
 import numpy as np 
 
-# 建立表格，方便觀看
+# 資料表格化模組
 import pandas as pd
 
 # 取得鳶尾花(iris)的數據集和訓練式
@@ -50,9 +50,10 @@ markers 三種花的特徵資料用甚麼圖案區分  o、s、D ：分别表示
 
 
 
-# 資料預先處理，向量化
+# 資料預先處理
 # ==========================
 iris_categorical_target = to_categorical(iris_target)
+#答案向量化
 """
 0 -> [1. 0. 0.]
 1 -> [0. 1. 0.]
@@ -80,14 +81,15 @@ model = Sequential()
 model.add(Dense(units=32, input_shape=(4,), activation='relu'))
 """
 輸入層就是 input_shape, 資料型態要是 tuple, (4,) 代表輸入層為4個神經元
-unit 後面的數字就是隱藏層(Dense)的神經元數量
+unit 後面的數字就是隱藏層的神經元數量
+Dense 是最簡單的類神經網路計算結構
 activation 激活函數
 """
 
 # 如要添加新的隱藏層 就不需要 input_shape
 model.add(Dense(units=16, activation='relu'))
 
-# 添加輸出層，使用 softmax 激活函數進行多分類(變成概率值來算最接近哪種花的向量)
+# 添加輸出層，使用 softmax 激活函數進行多分類(變成機率分布向量來算最接近哪種花的向量)
 model.add(Dense(3, activation='softmax'))
 """
 這邊輸出層神經元數量為3是因為花種只有3個
